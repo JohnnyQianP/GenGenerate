@@ -1,9 +1,0 @@
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\bin\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.deps.json
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\bin\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.dll
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\bin\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.pdb
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\obj\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.csprojAssemblyReference.cache
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\obj\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.AssemblyInfoInputs.cache
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\obj\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.AssemblyInfo.cs
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\obj\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\obj\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.dll
-C:\Surface Installed Software\Code\Self\GenGenerate\GenGenerate.Core.Infrastructure\obj\Debug\netstandard2.1\GenGenerate.Core.Infrastructure.pdb

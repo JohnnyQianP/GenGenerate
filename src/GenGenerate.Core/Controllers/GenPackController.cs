@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GenGenerate.Core.Controllers
-{
+{ 
     [Route("api/[controller]")]
     [ApiController]
     public class GenPackController : ControllerBase
