@@ -1,0 +1,33 @@
+name: createimage
+env:
+  DOCKER_REG: registry.cn-shanghai.aliyuncs.com/gen_dockerimage/gen_repository
+  REG: registry.cn-shanghai.aliyuncs.com
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      Version:
+        description: 'Version to input'
+        required: false
+        default: '1'
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: login docker
+      run: 
+        echo "${{ secrets.PASSWORD }}" | docker login $REG --username "${{ secrets.USERNAME }}" --password-stdin
+    - name: Build the Docker image
+      run:
+        docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
+    - name: Push Image
+      run:
+        docker tag gengenerateimage $DOCKER_REG:lastest
+        docker push $DOCKER_REG:lastest
+    
