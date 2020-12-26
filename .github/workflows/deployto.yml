@@ -25,7 +25,7 @@ jobs:
         echo "${{ secrets.PASSWORD }}" | docker login $REG --username "${{ secrets.USERNAME }}" --password-stdin
     - name: Build the Docker image
       run:
-        docker build . --file /src/GenGenerate.Core/Dockerfile --tag gengenerateimage
+        docker build . --file GenGenerate/src/GenGenerate.Core/Dockerfile --tag gengenerateimage
     - name: Push Image
       run:
         docker tag gengenerateimage $DOCKER_REG:lastest
