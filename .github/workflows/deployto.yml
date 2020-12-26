@@ -5,8 +5,6 @@ env:
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
     inputs:
       Version:
@@ -28,6 +26,8 @@ jobs:
         docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
     - name: Push Image
       run: |
+        VERSION=${{ github.event.inputs.Version }}
+        [ "$VERSION" == "" ] && VERSION=latest
         docker tag gengenerateimage $DOCKER_REG:latest
         docker push $DOCKER_REG:latest
     
