@@ -9,9 +9,10 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["src/GenGenerate.Core/GenGenerate.Core.csproj", "src/GenGenerate.Core/"]
 COPY ["src/GenGenerate.Core.Infrastructure/GenGenerate.Core.Infrastructure.csproj", "src/GenGenerate.Core.Infrastructure/"]
+
 RUN dotnet restore "src/GenGenerate.Core/GenGenerate.Core.csproj"
 COPY . .
-WORKDIR "/src/GenGenerate.Core"
+WORKDIR "/src/src/GenGenerate.Core"
 RUN dotnet build "GenGenerate.Core.csproj" -c Release -o /app/build
 
 FROM build AS publish
