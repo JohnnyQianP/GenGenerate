@@ -9,14 +9,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Person to greet'
-        required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
+      Version:
+        description: 'Version to input'
         required: false
-        default: 'The Octoverse'
+        default: '1'
 jobs:
   build:
 
@@ -26,7 +22,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: login docker
       run: 
-        echo "${{ UserSecrets.PASSWORD }}" | docker login $REG -u "${{ UserSecrets.USERNAME }}" --password-stdin
+        echo "${{ secrets.PASSWORD }}" | docker login $REG -u "${{ secrets.USERNAME }}" --password-stdin
     - name: Build the Docker image
       run:
         docker build . --file Dockerfile --tag gengenerateimage
