@@ -27,7 +27,7 @@ jobs:
       run:
         docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
     - name: Push Image
-      run:
+      run: |
         docker tag gengenerateimage $DOCKER_REG:latest
         docker push $DOCKER_REG:latest
     
