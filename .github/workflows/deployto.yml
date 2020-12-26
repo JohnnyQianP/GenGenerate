@@ -10,7 +10,7 @@ on:
       Version:
         description: 'Version to input'
         required: false
-        default: '1'
+        default: ''
 jobs:
   build:
 
@@ -29,5 +29,5 @@ jobs:
         VERSION=${{ github.event.inputs.Version }}
         [ "$VERSION" == "" ] && VERSION=latest
         docker tag gengenerateimage $DOCKER_REG:latest
-        docker push $DOCKER_REG:$VERSION
+        docker push $DOCKER_REG:latest
     
