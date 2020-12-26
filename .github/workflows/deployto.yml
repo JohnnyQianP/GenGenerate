@@ -1,0 +1,37 @@
+name: createimage
+env:
+  DOCKER_REG: registry.cn-shanghai.aliyuncs.com/gen_dockerimage/gen_repository
+  REG: registry.cn-shanghai.aliyuncs.com
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  page_build:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: true
+        default: 'Mona the Octocat'
+      home:
+        description: 'location'
+        required: false
+        default: 'The Octoverse'
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: login docker
+      run: 
+        echo "${{ secrets.PASSWORD }}" | docker login $REG -u "${{ secrets.USERNAME }}" --password-stdin
+    - name: Build the Docker image
+      run:
+        docker build . --file Dockerfile --tag gengenerateimage:lastest
+    - name: Push Image
+        docker tag gengenerateimage $DOCKER_REG/gengenerateimage:lastest
+        docker push $DOCKER_REG:lastest
+    
