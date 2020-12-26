@@ -28,6 +28,6 @@ jobs:
       run: |
         VERSION=${{ github.event.inputs.Version }}
         [ "$VERSION" == "" ] && VERSION=latest
-        docker tag gengenerateimage $DOCKER_REG:latest
-        docker push $DOCKER_REG:latest
+        docker tag gengenerateimage $DOCKER_REG:$VERSION
+        docker push $DOCKER_REG:$VERSION
     
