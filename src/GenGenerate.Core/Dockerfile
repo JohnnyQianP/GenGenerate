@@ -7,8 +7,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["GenGenerate.Core/GenGenerate.Core.csproj", "GenGenerate.Core/"]
-COPY ["GenGenerate.Core.Infrastructure/GenGenerate.Core.Infrastructure.csproj", "GenGenerate.Core.Infrastructure/"]
+COPY ["src/GenGenerate.Core/GenGenerate.Core.csproj", "GenGenerate.Core/"]
+COPY ["src/GenGenerate.Core.Infrastructure/GenGenerate.Core.Infrastructure.csproj", "GenGenerate.Core.Infrastructure/"]
 RUN dotnet restore "GenGenerate.Core/GenGenerate.Core.csproj"
 COPY . .
 WORKDIR "/src/GenGenerate.Core"
