@@ -16,7 +16,7 @@ jobs:
 
     runs-on: ubuntu-20.04
     outputs:
-      version: ${{ steps.step1.outputs.version }}
+      version: ${{ steps.pushimg.outputs.version }}
     steps:
     - uses: actions/checkout@v2
     - name: login docker
