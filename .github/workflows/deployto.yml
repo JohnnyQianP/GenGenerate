@@ -5,18 +5,18 @@ env:
 on:
   push:
     branches: [ main ]
+    tags: 
+      - 'v*'
   workflow_dispatch:
-    inputs:
-      Version:
-        description: 'Version to input'
-        required: false
-        default: ''
+  pull_request:
+    tags: 
+      - 'v*'
 jobs:
   build:
 
     runs-on: ubuntu-20.04
     outputs:
-      version: ${{ steps.pushimg.outputs.version }}
+      version: ${{ steps.get_version.outputs.VERSION }}
     steps:
     - uses: actions/checkout@v2
     - name: login docker
@@ -25,12 +25,12 @@ jobs:
     - name: Build the Docker image
       run:
         docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
-    - name: pushimg
+    - name: Get version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: push image
       run: |
-        VERSIONa=${{ github.event.inputs.Version }}
-        [ "$VERSIONa" == "" ] && VERSIONa=latest
-        echo "::set-output name=version::${{VERSIONa}}"
-        docker tag gengenerateimage $DOCKER_REG:$VERSIONa
+        docker tag gengenerateimage $DOCKER_REG:${{ steps.get_version.outputs.VERSION }}
         docker push $DOCKER_REG:$VERSIONa
   deploy:
     runs-on: ubuntu-20.04
