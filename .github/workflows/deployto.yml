@@ -15,7 +15,8 @@ jobs:
   build:
 
     runs-on: ubuntu-20.04
-
+    outputs:
+      version: ${{ steps.step1.outputs.version }}
     steps:
     - uses: actions/checkout@v2
     - name: login docker
@@ -25,9 +26,25 @@ jobs:
       run:
         docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
     - name: Push Image
+    - id: pushimg
       run: |
         VERSION=${{ github.event.inputs.Version }}
         [ "$VERSION" == "" ] && VERSION=latest
+        echo "::set-output name=version::${{VERSION}}"
         docker tag gengenerateimage $DOCKER_REG:$VERSION
         docker push $DOCKER_REG:$VERSION
-    
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: build
+    env:
+      CONTAINER_NAME: gengenerate-app
+    steps:
+    - name: deploy docker image
+      uses: appleboy/ssh-action@v0.0.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.HOST_USERNAME }}
+        password: ${{ secrets.HOST_PASSWORD }}
+        envs: CONTAINER_NAME, DOCKER_REG
+        script: |
+		      docker run --name $CONTAINER_NAME -d -p 5000:80 $DOCKER_REG:${{needs.build.outputs.version}} 
