@@ -28,11 +28,11 @@ jobs:
     - name: Push Image
       id: pushimg
       run: |
-        VERSION=${{ github.event.inputs.Version }}
-        [ "$VERSION" == "" ] && VERSION=latest
-        echo "::set-output name=version::${{VERSION}}"
-        docker tag gengenerateimage $DOCKER_REG:$VERSION
-        docker push $DOCKER_REG:$VERSION
+        VERSIONa=${{ github.event.inputs.Version }}
+        [ "$VERSIONa" == "" ] && VERSIONa=latest
+        echo "::set-output name=version::${{VERSIONa}}"
+        docker tag gengenerateimage $DOCKER_REG:$VERSIONa
+        docker push $DOCKER_REG:$VERSIONa
   deploy:
     runs-on: ubuntu-20.04
     needs: build
