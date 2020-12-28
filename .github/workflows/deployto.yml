@@ -26,7 +26,7 @@ jobs:
       run:
         docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
     - name: Push Image
-    - id: pushimg
+      id: pushimg
       run: |
         VERSION=${{ github.event.inputs.Version }}
         [ "$VERSION" == "" ] && VERSION=latest
