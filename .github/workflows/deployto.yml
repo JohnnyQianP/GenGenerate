@@ -31,7 +31,7 @@ jobs:
     - name: push image
       run: |
         docker tag gengenerateimage $DOCKER_REG:${{ steps.get_version.outputs.VERSION }}
-        docker push $DOCKER_REG:$VERSIONa
+        docker push $DOCKER_REG:${{ steps.get_version.outputs.VERSION }}
   deploy:
     runs-on: ubuntu-20.04
     needs: build
