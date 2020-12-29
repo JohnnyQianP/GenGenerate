@@ -5,12 +5,13 @@ env:
 on:
   push:
     branches: [ main ]
-    tags: 
-      - 'v*'
+    
   workflow_dispatch:
-  pull_request:
-    tags: 
-      - 'v*'
+    inputs:
+       Version:
+        description: 'Version to input'
+        required: true
+        default: 'v1.0.0'
 jobs:
   build:
 
@@ -27,7 +28,7 @@ jobs:
         docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
     - name: Get version
       id: get_version
-      run: echo ::set-output name=VERSION::$(echo sed -e 's/^v//')
+      run: echo ::set-output name=VERSION::${{ github.event.inputs.Version | 'release'}}
 
     - name: push image
       run: |
