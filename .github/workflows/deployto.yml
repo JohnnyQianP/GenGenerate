@@ -33,14 +33,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.get_version.outputs.VERSION }}
-        release_name: ${{ steps.get_version.outputs.VERSION }}
+        tag_name: ${{ steps.get_version.outputs.version }}
+        release_name: ${{ steps.get_version.outputs.version }}
         draft: false
         prerelease: false
     - name: push image
       run: |
-        docker tag gengenerateimage $DOCKER_REG:${{ steps.get_version.outputs.VERSION }}
-        docker push $DOCKER_REG:${{ steps.get_version.outputs.VERSION }}
+        docker tag gengenerateimage $DOCKER_REG:${{ steps.get_version.outputs.version }}
+        docker push $DOCKER_REG:${{ steps.get_version.outputs.version }}
   deploy:
     runs-on: ubuntu-20.04
     needs: build
