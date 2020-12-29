@@ -31,7 +31,7 @@ jobs:
       run: |
         VERSION=${{ github.event.inputs.Version }}
         [ "$VERSION" == "" ] && VERSION=release
-        echo ::set-output name=VERSION::$(echo "${{ github.event.inputs.Version }}")
+        echo ::set-output name=VERSION::$(echo "${{ VERSION }}")
 
     - name: push image
       run: |
