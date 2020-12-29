@@ -27,7 +27,7 @@ jobs:
         docker build . --file src/GenGenerate.Core/Dockerfile --tag gengenerateimage
     - name: Get version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo ::set-output name=VERSION::$(echo sed -e 's/^v//')
 
     - name: push image
       run: |
