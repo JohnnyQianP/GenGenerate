@@ -54,4 +54,4 @@ jobs:
         script: |
           if [ $(docker ps -a | grep -c $CONTAINER_NAME) -gt 0 ]; then docker stop $CONTAINER_NAME;docker rm $CONTAINER_NAME;fi
           echo "${{ secrets.PASSWORD }}" | docker login $REG --username "${{ secrets.USERNAME }}" --password-stdin
-          docker run --name $CONTAINER_NAME -d -p 8081:8080 $DOCKER_REG:${{ needs.build.outputs.version }}
+          docker run --name $CONTAINER_NAME -d -p 8080:8080 $DOCKER_REG:${{ needs.build.outputs.version }}
