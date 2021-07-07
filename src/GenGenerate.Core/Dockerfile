@@ -2,7 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
-EXPOSE 8081
+EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
@@ -20,5 +20,5 @@ RUN dotnet publish "GenGenerate.Core.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ASPNETCORE_URLS http://*:8081
+#ENV ASPNETCORE_URLS http://*:8081
 ENTRYPOINT ["dotnet", "GenGenerate.Core.dll"]
