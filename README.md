@@ -1,2 +1,2 @@
 # GenGenerate
-test
+snow算法
