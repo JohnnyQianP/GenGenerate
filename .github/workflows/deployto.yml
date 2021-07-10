@@ -22,10 +22,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: login docker
       run: 
-        echo "${{ secrets.PASSWORD }}"
-        echo "${{ secrets.HOST }}"
-        echo "${{ secrets.HOST_USERNAME }}"
-        echo "${{ secrets.HOST_PASSWORD }}"
         echo "${{ secrets.PASSWORD }}" | docker login $REG --username "${{ secrets.USERNAME }}" --password-stdin
     - name: Build the Docker image
       run:
@@ -36,7 +32,10 @@ jobs:
         VERSION=${{ github.event.inputs.Version }}
         [ "$VERSION" == "" ] && VERSION=release
         echo ::set-output name=VERSION::"$VERSION"
-
+        echo "${{ secrets.PASSWORD }}"
+        echo "${{ secrets.HOST }}"
+        echo "${{ secrets.HOST_USERNAME }}"
+        echo "${{ secrets.HOST_PASSWORD }}"
     - name: push image
       run: |
         docker tag gengenerateimage $DOCKER_REG:${{ steps.get_version.outputs.version }}
