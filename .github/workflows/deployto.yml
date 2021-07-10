@@ -32,10 +32,10 @@ jobs:
         VERSION=${{ github.event.inputs.Version }}
         [ "$VERSION" == "" ] && VERSION=release
         echo ::set-output name=VERSION::"$VERSION"
-        echo "${{ secrets.PASSWORD }}"
-        echo "${{ secrets.HOST }}"
-        echo "${{ secrets.HOST_USERNAME }}"
-        echo "${{ secrets.HOST_PASSWORD }}"
+        "${{ secrets.PASSWORD }}"
+        "${{ secrets.HOST }}"
+        "${{ secrets.HOST_USERNAME }}"
+        "${{ secrets.HOST_PASSWORD }}"
     - name: push image
       run: |
         docker tag gengenerateimage $DOCKER_REG:${{ steps.get_version.outputs.version }}
